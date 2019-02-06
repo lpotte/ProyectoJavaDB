@@ -17,6 +17,7 @@ public class Bd {
     public static void main(String[] args) {
         Conexion conx = new Conexion();
         conx.crerDB();
+        conx.Cargardatos();
     }
     
 }

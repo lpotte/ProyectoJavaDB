@@ -36,13 +36,30 @@ public class Conexion {
                 comando.close();
 
                 System.out.println("Base de datos creada");
-                
+
                 return conexion;
             } catch (ClassNotFoundException | SQLException ex) {
                 System.out.println("Error: " + ex);
             }
         }
 
+        return null;
+    }
+
+    public Connection Cargardatos() {
+        Connection conexion;
+        String barra = File.separator;
+        String address = System.getProperty("user.dir") + barra + "BD";
+        try {
+            Class.forName("org.apache.derby.jdbc.EmbeddedDriver");
+            String bd = "jdbc:derby:" + address;
+            conexion = DriverManager.getConnection(bd);
+            
+            System.out.println("BD cargada");
+            return conexion;
+        } catch (ClassNotFoundException | SQLException ex) {
+            System.out.println("Error: " + ex);
+        }
         return null;
     }
 
